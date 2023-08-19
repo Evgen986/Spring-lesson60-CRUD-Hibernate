@@ -2,7 +2,12 @@ package ru.evgen.projectPiople.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
+
+@Data
 @Entity
 @Table(name = "person")
 public class Person {
@@ -28,57 +33,16 @@ public class Person {
 
     @Column(name = "address")
     // Страна, Город, индекс(6 цифр)
-    @Pattern(regexp = "[А-Я][а-я]+, [А-Я][а-я]+, \\d{6}", message = "Введите адрес в соответсвии с формой: Страна, Город, индекс (6 цифр)")
+    @Pattern(regexp = "[А-Я][а-я]+, [А-Я][а-я]+, \\d{6}", message = "Введите адрес в соответствии с формой: Страна, Город, индекс (6 цифр)")
     private String address;
 
-    public Person(){
+    @Column(name = "date_of_birth")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateOfBirth;
 
-    }
-    public Person(int id, String name, int age, String email, String address) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.address = address;
-    }
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }

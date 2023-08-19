@@ -12,23 +12,25 @@
             <div class="col h1 text-center">All people</div>
         </div>
         <div class="row">
-            <div class="col">ID</div>
+            <div class="col-1">ID</div>
             <div class="col">Name</div>
             <div class="col">Age</div>
             <div class="col">Email</div>
             <div class="col">Address</div>
+            <div class="col">Date of Birth</div>
             <hr>
             <br>
         </div>
         <div th:each="person : ${people}">
             <div class="row">
-                <div class="col" th:text="${person.getId()}">VALUE</div>
+                <div class="col-1" th:text="${person.getId()}">VALUE</div>
                 <div class="col">
                     <a class="link-dark" th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">VALUE</a>
                 </div>
                 <div class="col" th:text="${person.getAge()}">VALUE</div>
                 <div class="col" th:text="${person.getEmail()}">VALUE</div>
                 <div class="col" th:text="${person.getAddress()}">VALUE</div>
+                <div class="col" th:text="${person.getDateOfBirth()}">VALUE</div>
             </div>
         </div>
         <div class="row">
